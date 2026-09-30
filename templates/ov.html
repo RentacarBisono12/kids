@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Fuentes locales: tools/fetch_fonts.sh "Fredoka:wght@600;700" -->
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+  /* Cada .panel = 1 rótulo de 1920x1080. Recorte en ffmpeg: crop=1920:1080:0:<i*1080> */
+  html, body { margin: 0; background: transparent; }
+  .panel { width: 1920px; height: 1080px; position: relative; overflow: hidden; }
+  .card {
+    position: absolute; left: 50%; bottom: 110px; transform: translateX(-50%);
+    max-width: 1600px; white-space: nowrap; padding: 34px 72px; border-radius: 60px;
+    background: #FFD23F; color: #1B1B3A; border: 10px solid #1B1B3A;
+    font: 700 104px/1.1 'Fredoka', sans-serif; text-align: center;
+  }
+  .card small { display: block; font-size: 64px; font-weight: 600; }
+  .title .card { bottom: auto; top: 50%; transform: translate(-50%, -50%); font-size: 150px; }
+</style></head>
+<body>
+  <!-- Pocas palabras por pantalla. Añade/quita paneles y pasa N al script. -->
+  <div class="panel title"><div class="card">¡Los colores!</div></div>
+  <div class="panel"><div class="card">Rojo <small>como una manzana</small></div></div>
+  <div class="panel"><div class="card">Azul <small>como el mar</small></div></div>
+</body></html>
