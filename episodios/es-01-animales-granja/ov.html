@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<!-- Fuentes locales: tools/fetch_fonts.sh "Fredoka:wght@600;700" -->
+<link href="../../templates/fonts/fonts.css" rel="stylesheet">
+<style>
+  /* Cada .panel = 1 rótulo de 1920x1080. Recorte en ffmpeg: crop=1920:1080:0:<i*1080> */
+  html, body { margin: 0; background: transparent; }
+  .panel { width: 1920px; height: 1080px; position: relative; overflow: hidden; }
+  .card {
+    position: absolute; left: 50%; bottom: 110px; transform: translateX(-50%);
+    max-width: 1600px; white-space: nowrap; padding: 34px 72px; border-radius: 60px;
+    background: #FFD23F; color: #1B1B3A; border: 10px solid #1B1B3A;
+    font: 700 104px/1.1 'Fredoka', sans-serif; text-align: center;
+  }
+  .card small { display: block; font-size: 64px; font-weight: 600; }
+  .title .card { bottom: auto; top: 50%; transform: translate(-50%, -50%); font-size: 150px; }
+</style></head>
+<body>
+  <div class="panel"><div class="card">VACA</div></div>
+  <div class="panel"><div class="card">¡muu!</div></div>
+  <div class="panel"><div class="card">CERDITO</div></div>
+  <div class="panel"><div class="card">¡oinc, oinc!</div></div>
+  <div class="panel"><div class="card">OVEJA</div></div>
+  <div class="panel"><div class="card">¡beee!</div></div>
+  <div class="panel"><div class="card">GALLO</div></div>
+  <div class="panel"><div class="card">¡quiquiriquí!</div></div>
+  <div class="panel"><div class="card">PATO</div></div>
+  <div class="panel"><div class="card">¡cuac, cuac!</div></div>
+  <div class="panel"><div class="card">CABALLO</div></div>
+</body></html>
