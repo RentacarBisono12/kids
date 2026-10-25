@@ -24,6 +24,19 @@ Prompt de la hoja (gpt_image_2_5, 16:9):
 | Pipo | Pixie / Marisol | Pixie / Kayla | pitch_rate alto, speech_rate −10 % |
 | Lula | Ines / Elena | Luna / Daisy | speech_rate −15 %, tono cálido |
 
+### Prueba de voces (25-oct-2026, seed_audio, transcrito con Whisper)
+| Prueba | Resultado | Decisión |
+|---|---|---|
+| Pipo ES — Pixie (pitch +3, rate −10) | Se entiende; "muu" lo deletreó como "M-U-U" | Usar. Escribir "¡muuuu!" |
+| Lula ES — Ines (rate −15) | Correcto | Usar |
+| Lula ES — Marisol | Whisper lo detecta como inglés; "quién es" → "Kenneth" | Descartar |
+| Pipo EN — Pixie | Correcto ("Pipo" → "Pupil"; nombre inventado, aceptable) | Usar |
+| Lula EN — Luna | Correcto, 0,98 de confianza en inglés | Usar |
+Falta que una persona las escuche: Whisper solo confirma que se entienden, no si suenan bien para niños.
+
+Hoja de personajes aprobada: job `513e0e77-0e6a-4645-a961-21e86c27c00f` (variante B).
+Úsala como referencia de imagen en cada fotograma clave.
+
 ## Reglas de guion
 - Escenas de 4–6 s, una idea por escena.
 - La palabra clave se dice 3 veces: la presenta un personaje, la repite el otro y la repite el niño.
