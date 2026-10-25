@@ -70,6 +70,23 @@ Si no hay audio: `-f lavfi -i anullsrc=r=44100:cl=stereo -shortest` igualmente.
 - Música solo con licencia demostrable. Registra la prueba en el `brief.md` del episodio.
 - "Hecho para niños" declarado con la verdad. Declararlo mal puede costar el canal.
 
+## Lecciones de producción (ES-01, oct 2026)
+- **Voces:** usar `text2speech_v2` con `variant: "elevenlabs"`. `seed_audio` lee el español con
+  acento inglés (Whisper lo detecta como ~57 % español). Verifica cada línea con faster-whisper.
+- **Animación:** `seedance_2_0_mini`, 720p, `generate_audio:false`, `start_image` = job del
+  fotograma (1 crédito/s). Si responde con un preset ("IN THE DARK"), reintenta con
+  `declined_preset_id`. Límite: ~6 videos en paralelo; 429 = espera, no reintentes en bucle.
+- **Sandbox:** la llamada MCP corta a ~60 s aunque pidas más → todo lo largo con
+  `background:true`. Un `sleep 880` en background mantiene vivos los archivos entre llamadas.
+- **Rótulos en la nube:** si la sesión corre en un contenedor que no puede subir a
+  `upload.higgsfield.ai`, rasteriza el mismo HTML en el sandbox con Playwright
+  (`tools/render_overlays_sandbox.js`, verifica "fuentes cargadas: Fredoka").
+- **Revisión sin ver:** la salida de texto del sandbox se corta ~20 KB, así que no sirve para
+  traer imágenes. Revisión numérica: ffprobe, salto de luminancia (signalstats YAVG <3 = sin
+  flashes), `scdet` (0 cortes), píxel del rótulo, y Whisper sobre el audio final. El ojo
+  humano revisa fotogramas en la galería de Higgsfield antes de animar.
+- **Montaje:** `tools/manifiesto.py` + `tools/armar_episodio.py` (xfade/acrossfade, loudnorm -16 LUFS).
+
 ## Estructura
 - `episodios/<slug>/brief.md` — guion, plano a plano, licencias (copia `episodios/_plantilla`).
 - `templates/ov.html` — plantilla de rótulos apilados.

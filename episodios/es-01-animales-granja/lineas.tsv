@@ -1,39 +1,39 @@
-indice	escena	voz	texto
-10	1	P	¡Hola, soy Pipo!
-11	1	L	¡Y yo soy Lula!
-20	2	P	Lula, ¿oyes eso? ¡Alguien dice muuuu!
-30	3	L	¡Vamos a descubrir quién es!
-40	4	A	¡Muuuuu!
-50	5	P	¡Es una vaca!
-60	6	L	La vaca dice... ¡muuuu! Dilo conmigo: ¡muuuu!
-70	7	L	La vaca nos da leche.
-80	8	A	¡Oinc, oinc!
-90	9	P	¿Tú sabes quién es?
-100	10	P	¡Un cerdito!
-101	10	L	¡Un cerdito!
-110	11	L	El cerdito dice ¡oinc, oinc!
-120	12	P	¡Oinc, oinc! ¡Me encanta!
-130	13	A	¡Beeee!
-140	14	P	¡Qué suave! Es como una nube.
-150	15	L	Es una oveja. La oveja dice... ¡beeee!
-160	16	P	¡Dilo tú!
-161	16	P	¡Beeee!
-170	17	L	¿Quién vive en esa casita roja?
-180	18	A	¡Quiquiriquí!
-190	19	P	¡Es un gallo! Despierta a todos por la mañana.
-200	20	L	¡Quiquiriquí!
-201	20	P	¡Quiquiriquí!
-210	21	A	¡Cuac, cuac!
-220	22	L	Es un pato. Nada en el agua.
-230	23	P	¿Cómo dice el pato?
-231	23	P	¡Cuac, cuac!
-240	24	A	¡Iiiiiih!
-250	25	P	¡Qué grande!
-260	26	L	Es un caballo. Hace ¡iiiih! y corre muy rápido.
-270	27	L	¡Vamos a repasar!
-280	28	P	La vaca... ¡muuu! El cerdo... ¡oinc, oinc!
-290	29	L	La oveja... ¡beee! El gallo... ¡quiquiriquí!
-300	30	P	El pato... ¡cuac! El caballo... ¡iiiih!
-310	31	L	¿Cuál es tu animal favorito? El mío es la oveja.
-320	32	P	¡Adiós, amigos!
-321	32	L	¡Hasta la próxima!
+indice	escena	voz	texto	pausa
+10	1	P	¡Hola, soy Pipo!	
+11	1	L	¡Y yo soy Lula!	
+20	2	P	Lula, ¿oyes eso? ¡Alguien dice muuuu!	
+30	3	L	¡Vamos a descubrir quién es!	
+40	4	A	¡Muuuuu!	
+50	5	P	¡Es una vaca!	
+60	6	L	La vaca dice... ¡muuuu! Dilo conmigo: ¡muuuu!	
+70	7	L	La vaca nos da leche.	
+80	8	A	¡Oinc, oinc!	
+90	9	P	¿Tú sabes quién es?	
+100	10	P	¡Un cerdito!	
+101	10	L	¡Un cerdito!	
+110	11	L	El cerdito dice ¡oinc, oinc!	
+120	12	P	¡Oinc, oinc! ¡Me encanta!	
+130	13	A	¡Beeee!	
+140	14	P	¡Qué suave! Es como una nube.	
+150	15	L	Es una oveja. La oveja dice... ¡beeee!	
+160	16	P	¡Dilo tú!	2
+161	16	P	¡Beeee!	
+170	17	L	¿Quién vive en esa casita roja?	
+180	18	A	¡Quiquiriquí!	
+190	19	P	¡Es un gallo! Despierta a todos por la mañana.	
+200	20	L	¡Quiquiriquí!	
+201	20	P	¡Quiquiriquí!	
+210	21	A	¡Cuac, cuac!	
+220	22	L	Es un pato. Nada en el agua.	
+230	23	P	¿Cómo dice el pato?	2
+231	23	P	¡Cuac, cuac!	
+240	24	A	¡Iiiiiih!	
+250	25	P	¡Qué grande!	
+260	26	L	Es un caballo. Hace ¡iiiih! y corre muy rápido.	
+270	27	L	¡Vamos a repasar!	
+280	28	P	La vaca... ¡muuu! El cerdo... ¡oinc, oinc!	
+290	29	L	La oveja... ¡beee! El gallo... ¡quiquiriquí!	
+300	30	P	El pato... ¡cuac! El caballo... ¡iiiih!	
+310	31	L	¿Cuál es tu animal favorito? El mío es la oveja.	
+320	32	P	¡Adiós, amigos!	
+321	32	L	¡Hasta la próxima!	
