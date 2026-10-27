@@ -52,4 +52,12 @@ canciones infantiles, granja para niños
 - [x] Rótulos: alpha = yes, Fredoka verificada
 - [x] Planos de 5–8 s, sin flashes (medido)
 - [x] Sin música de licencia dudosa
-- [ ] Salida final: ffprobe + Whisper + revisión humana completa antes de publicar
+- [x] Salida final: ffprobe 1920×1080 30 fps, 2:45 (165,2 s), H.264 + AAC
+- [x] Sin flashes en el video completo: salto máx. de luminancia 3,5/255 (rampa suave de un fundido en 0:39), 0 saltos > 10
+- [x] Volumen: −15,8 LUFS integrado
+- [x] Whisper sobre el audio final: las 38 líneas en orden. Los sonidos de animales salen como "Mu", "Oink", "Kikiriki" (Whisper no transcribe bien "beee"/"iiih")
+- [ ] Revisión humana completa (verlo entero con sonido) antes de publicar
+
+## Entrega
+- Video: https://d2ol7oe51mr4n9.cloudfront.net/user_3Gv0xgr4xyMhZDx7tZiyu8WgdvX/8d6a6bc4-a7f3-45ec-9dd6-b86154371360.mp4
+- Miniatura (1280×720): https://d2ol7oe51mr4n9.cloudfront.net/user_3Gv0xgr4xyMhZDx7tZiyu8WgdvX/669b79e0-bddd-47bf-a37c-1ef7806c3921.jpg

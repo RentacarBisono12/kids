@@ -86,6 +86,10 @@ Si no hay audio: `-f lavfi -i anullsrc=r=44100:cl=stereo -shortest` igualmente.
   flashes), `scdet` (0 cortes), píxel del rótulo, y Whisper sobre el audio final. El ojo
   humano revisa fotogramas en la galería de Higgsfield antes de animar.
 - **Montaje:** `tools/manifiesto.py` + `tools/armar_episodio.py` (xfade/acrossfade, loudnorm -16 LUFS).
+  Un solo grafo xfade con 32 entradas 1080p muere (memoria/lease): unir en grupos de 8
+  (intermedio .mkv crf14 + PCM) y luego los grupos. Corre en `background:true`.
+- **Entrega:** subir el MP4 final y la miniatura (1280×720 JPG) con `media_upload` en la MISMA
+  sesión del sandbox antes de que expire; el enlace de CloudFront es lo que se entrega.
 
 ## Estructura
 - `episodios/<slug>/brief.md` — guion, plano a plano, licencias (copia `episodios/_plantilla`).

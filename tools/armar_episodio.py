@@ -11,7 +11,7 @@ Manifiesto (generado por tools/manifiesto.py):
 }
 Uso (en el sandbox):  python3 armar_episodio.py manifiesto.json salida.mp4
 Pasos: descarga -> segmento por escena (1920x1080@30, voces con adelay, rótulo con
-fade de entrada) -> xfade/acrossfade con offsets acumulativos -> loudnorm -> H.264/AAC.
+fade de entrada) -> xfade/acrossfade por grupos de 8 -> unión de grupos + loudnorm -> H.264/AAC.
 """
 import json, os, subprocess, sys
 
@@ -56,6 +56,33 @@ def segmento(e, ov, fps, tmp):
         "-c:a", "aac", "-b:a", "192k", out])
     return out
 
+FINAL = ["-c:v", "libx264", "-profile:v", "high", "-preset", "medium", "-crf", "20",
+         "-pix_fmt", "yuv420p", "-r", "30",
+         "-c:a", "aac", "-b:a", "128k", "-ar", "44100", "-movflags", "+faststart"]
+INTERMEDIO = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "14", "-pix_fmt", "yuv420p",
+              "-r", "30", "-c:a", "pcm_s16le"]
+
+def unir(files, durs, T, out, final=False):
+    """xfade/acrossfade con offsets acumulativos; loudnorm solo en la pasada final."""
+    if len(files) == 1 and not final:
+        return files[0]
+    ins, fc = [], []
+    for f in files:
+        ins += ["-i", f]
+    vprev, aprev, off = "0:v", "0:a", 0.0
+    for i in range(1, len(files)):
+        off += durs[i - 1] - T
+        vo, ao = ("vout", "amid") if i == len(files) - 1 else (f"x{i}", f"y{i}")
+        fc.append(f"[{vprev}][{i}:v]xfade=transition=fade:duration={T}:offset={off:.3f}[{vo}]")
+        fc.append(f"[{aprev}][{i}:a]acrossfade=d={T}[{ao}]")
+        vprev, aprev = vo, ao
+    if len(files) == 1:
+        fc.append("[0:v]null[vout]")
+    fc.append(f"[{aprev}]" + ("loudnorm=I=-16:TP=-1.5:LRA=11" if final else "anull") + "[aout]")
+    sh(["ffmpeg", "-y", "-v", "error", "-threads", "2", *ins, "-filter_complex", ";".join(fc),
+        "-map", "[vout]", "-map", "[aout]", *(FINAL if final else INTERMEDIO), out])
+    return out
+
 def main():
     man = json.load(open(sys.argv[1]))
     salida = sys.argv[2]
@@ -63,24 +90,16 @@ def main():
     fps, T = man.get("fps", 30), man.get("T", 0.3)
     segs = [segmento(e, man["overlays_png"], fps, tmp) for e in man["escenas"]]
     durs = [e["dur"] for e in man["escenas"]]
-    ins, fc = [], []
-    for s in segs:
-        ins += ["-i", s]
-    vprev, aprev, off = "0:v", "0:a", 0.0
-    for i in range(1, len(segs)):
-        off += durs[i - 1] - T
-        vo, ao = ("vout", "amid") if i == len(segs) - 1 else (f"x{i}", f"y{i}")
-        fc.append(f"[{vprev}][{i}:v]xfade=transition=fade:duration={T}:offset={off:.3f}[{vo}]")
-        fc.append(f"[{aprev}][{i}:a]acrossfade=d={T}[{ao}]")
-        vprev, aprev = vo, ao
-    fc.append(f"[{aprev}]loudnorm=I=-16:TP=-1.5:LRA=11[aout]")
+    # Un solo grafo con 32 entradas 1080p muere por memoria en el sandbox:
+    # se une en grupos de 8 (intermedio sin pérdidas audibles) y luego los grupos.
+    G, GD = [], []
+    for g in range(0, len(segs), 8):
+        ds = durs[g:g + 8]
+        G.append(unir(segs[g:g + 8], ds, T, f"{tmp}/grupo{g // 8}.mkv"))
+        GD.append(sum(ds) - (len(ds) - 1) * T)
     total = sum(durs) - (len(durs) - 1) * T
     print(f"duracion esperada {total:.2f}s", flush=True)
-    sh(["ffmpeg", "-y", "-v", "error", *ins, "-filter_complex", ";".join(fc),
-        "-map", "[vout]", "-map", "[aout]",
-        "-c:v", "libx264", "-profile:v", "high", "-preset", "medium", "-crf", "20",
-        "-pix_fmt", "yuv420p", "-r", str(fps),
-        "-c:a", "aac", "-b:a", "128k", "-ar", "44100", "-movflags", "+faststart", salida])
+    unir(G, GD, T, salida, final=True)
 
 if __name__ == "__main__":
     main()
